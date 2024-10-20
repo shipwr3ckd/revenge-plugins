@@ -1,26 +1,21 @@
 {
 	"private": true,
 	"scripts": {
-		"build": "node build.mjs"
+		"build": "node ./src/utils/build",
+		"watch": "pnpm build --watch",
+		"serve": "http-server ./dist -p 1337 -c-1 -d=false -i=false -t10"
 	},
-	"dependencies": {
-		"@swc/helpers": "^0.4.14"
+	"engines": {
+		"node": ">=20.16.0",
+		"pnpm": ">=9.9.0"
 	},
+	"type": "module",
 	"devDependencies": {
-		"@rollup/plugin-commonjs": "^24.0.0",
-		"@rollup/plugin-node-resolve": "^15.0.1",
-		"@swc/core": "^1.3.35",
-		"esbuild": "^0.16.14",
-		"rollup": "^3.9.1",
-		"rollup-plugin-esbuild": "^5.0.0",
-		"vendetta-types": "latest"
-	},
-	"pnpm": {
-		"peerDependencyRules": {
-			"ignoreMissing": [
-				"react",
-				"react-native"
-			]
-		}
+		"@types/chroma-js": "^2.4.4",
+		"@types/react-native": "^0.73.0",
+		"esbuild": "^0.24.0",
+		"http-server": "^14.1.1",
+		"spitroast": "^2.1.4",
+		"typescript": "^5.6.3"
 	}
 }
