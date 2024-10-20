@@ -1,7 +1,7 @@
-import { writeFile, readdir } from "fs/promises";
+import { writeFile, readdir, mkdir } from "fs/promises";
 import { createHash } from "crypto";
 import { build } from "esbuild"
-import { watch } from "fs";
+import { existsSync, watch } from "fs";
 import { dirname, join, resolve } from "path";
 
 import COLORS from "./colors.js"
@@ -41,6 +41,7 @@ const startBuilding = async (forceBuildPluginList) => {
         }
 
         const outDir = join(DIST_DIR, p);
+        if(!existsSync(outDir)) await mkdir(outDir, { recursive: true });
 
         try {
             const result = await build({
