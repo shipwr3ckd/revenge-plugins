@@ -1,7 +1,10 @@
-# Vendetta Plugins Template
-This repo contains a template for creating [Vendetta](https://github.com/vendetta-mod/Vendetta) plugins.
+# 🐇 Bunny Plugins by kvba0000
+This repo contains various plugins for [Bunny](https://github.com/pyoncord/Bunny) - Discord Mobile client (fork of Vendetta).
 
 # How to install?
-Paste a plugin URL into the Plugins page of Vendetta, following a basic format of:
+Paste a plugin URL into the Plugins page of Bunny, following a basic format of:
 
-https://`YOUR_GITHUB_USERNAME`.github.io/`REPO_NAME`/`PLUGIN_NAME`
+https://kvba0000.github.io/bunny-plugins/`plugin-name`
+
+# Can I use tools from this repo for my plugins?
+Of course! That's what I made this for! Credits are not necessarily needed but are appreciated.

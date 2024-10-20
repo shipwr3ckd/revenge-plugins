@@ -1,1 +1,1 @@
-{"name":"Template Plugin","description":"A plugin for use as a template.","authors":[{"name":"You!","id":"YOUR_ID_HERE"}],"main":"index.js","vendetta":{"icon":"ic_badge_staff"},"hash":"6cb6594aa032b83a1f24c2bb3d63e8aeb8e1652e0361e7d7a0e415850cc9c406"}
+{"name":"Pyoncord Example Plugin","description":"Example plugin for silly discord mod. Build time: 2024-10-20T21:03:14.564Z","authors":[{"name":"kvba","id":"105170831130234880"}],"main":"index.js","vendetta":{"icon":"StatusIdle"},"hash":"0f9926ee710496c7d45aa6420f1e42707c1bd8fd46472dec388bc8ad964ba9d1"}
