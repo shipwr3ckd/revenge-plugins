@@ -1,4 +1,4 @@
-/** @type {import("../../types/plugin.ts").PluginManifest} */
+/** @type {import("@vtypes/plugin").PluginManifest} */
 export default {
     name: "Pyoncord Example Plugin",
     description: `Example plugin for silly discord mod. Build time: ${new Date().toISOString()}`,

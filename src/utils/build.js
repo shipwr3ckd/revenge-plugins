@@ -21,6 +21,7 @@ const VENDETTA_IMPORT_REGEX = (requireFunctionName = "\\w+") => IMPORT_REGEX("@v
 const REACT_IMPORT_REGEX = (requireFunctionName = "\\w+") => IMPORT_REGEX("react", requireFunctionName);
 const REACTNATIVE_IMPORT_REGEX = (requireFunctionName = "\\w+") => IMPORT_REGEX("react-native", requireFunctionName);
 
+const isWatch = process.argv.slice(2).includes("--watch")
 
 const startBuilding = async (forceBuildPluginList) => {
     const plugins = forceBuildPluginList ?? await readdir(PLUGINS_DIR)
@@ -28,7 +29,7 @@ const startBuilding = async (forceBuildPluginList) => {
     for (let p of plugins) {
         console.log(`${COLORS.fg.cyan}[BUILD] Building plugin "${p}"...${COLORS.style.reset}`)
 
-        /** @type {import("../types/plugin.ts").PluginManifest} */
+        /** @type {import("@vtypes/plugin").PluginManifest} */
         let manifest;
         try {
             manifest = (await import(
@@ -53,6 +54,7 @@ const startBuilding = async (forceBuildPluginList) => {
                 minify: true,
                 bundle: true,
                 write: false,
+                sourcemap: isWatch ? "inline" : false,
                 globalName: "plugin",
                 tsconfig: join(ROOT_DIR, "tsconfig.json"),
             })
@@ -63,13 +65,13 @@ const startBuilding = async (forceBuildPluginList) => {
     
             // Replace require statements with globals and return the plugin
             code = code
-                .replace(VAR_SET_RETURN_REGEX, `(()=>{return $1})()`)
-                .replace(REQUIRE_NAME_REGEX, "")
-                .replace(VENDETTA_IMPORT_REGEX(requireFunctionName), (_, path) => path.slice(1).replace(/\//g, "."))
-                .replace(REACT_IMPORT_REGEX(requireFunctionName), "React")
-                .replace(REACTNATIVE_IMPORT_REGEX(requireFunctionName), "ReactNative")
+            .replace(REQUIRE_NAME_REGEX, "")
+            .replace(VENDETTA_IMPORT_REGEX(requireFunctionName), (_, path) => path.slice(1).replace(/\//g, "."))
+            .replace(REACT_IMPORT_REGEX(requireFunctionName), "React")
+            .replace(REACTNATIVE_IMPORT_REGEX(requireFunctionName), "ReactNative")
+            .replace(VAR_SET_RETURN_REGEX, `(()=>{return $1})()`)
 
-            /** @type {import("../types/plugin.ts").PluginManifest} */
+            /** @type {import("@vtypes/plugin").PluginManifest} */
             const buildManifest = { 
                 ...manifest,
                 hash: createHash("sha256").update(code).digest("hex"),
@@ -88,7 +90,7 @@ const startBuilding = async (forceBuildPluginList) => {
 
 }
 
-if(process.argv.slice(2).includes("--watch")) {
+if(isWatch) {
     let lastChange = 0;
     watch(PLUGINS_DIR, { recursive: true }, async (event, path) => {
         if(Date.now() - lastChange < 300) return; // <- implemented as a workaround for a twice trigger bug
@@ -102,4 +104,4 @@ if(process.argv.slice(2).includes("--watch")) {
     })
 }
 
-startBuilding().then(() => console.log(`${COLORS.fg.gray}[WATCHER] Watching for changes...${COLORS.style.reset}`));
+startBuilding();
