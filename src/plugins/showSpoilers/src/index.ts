@@ -19,8 +19,8 @@ export default definePlugin({
     onLoad() {
         try {
             after("apply", MessagesWrapperConnected, (_, ret: MessagesWrapperConnectedReturn) => {
-                ret.props.messages._array.forEach(({ content }) => {
-                    if (content) content = content
+                ret.props.messages._array.forEach(m => {
+                    if (m.content) m.content = m.content
                         .replace(/\|\|(.*?)\|\|/g, (_, s) => `\`${s.replace(/`/g, "\\`")}\``)
                 })
             })
