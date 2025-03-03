@@ -43,7 +43,6 @@ export default definePlugin({
 				for (const attachment of message.attachments) {
 					attachment.spoiler = true
 				}
-				logger.info(content)
 			})
 		)
 
