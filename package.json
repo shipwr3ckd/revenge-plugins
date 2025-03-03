@@ -3,7 +3,8 @@
 	"scripts": {
 		"build": "node ./src/utils/build",
 		"watch": "pnpm build --watch",
-		"serve": "http-server ./dist -p 1337 -c-1 -d=false -i=false -t10"
+		"serve": "http-server ./dist -p 1337 -c-1 -d=false -i=false -t10",
+		"serve-port": "http-server ./dist -c-1 -d=false -i=false -t10"
 	},
 	"engines": {
 		"node": ">=20.16.0",
