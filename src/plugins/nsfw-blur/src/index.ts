@@ -9,23 +9,8 @@ let patches: Array<Function> = []
 
 export default definePlugin({
 	onLoad() {
-		const transformMessageAttachments = findByName('transformMessageAttachments', false)
 		const createMessageContent = findByName('createMessageContent', false)
 		const getChannel = findByProps('getChannel').getChannel
-
-		patches.push(
-			before('default', transformMessageAttachments, args => {
-				return
-				let message = args[0]
-				// retain sanity
-				if (!message || !(message.attachments instanceof Array)) return
-
-				message.shouldObscureSpoiler = true
-				for (const attachment of message.attachments) {
-					attachment.spoiler = true
-				}
-			})
-		)
 
 		patches.push(
 			before('default', createMessageContent, args => {
