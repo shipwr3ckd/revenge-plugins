@@ -1,2 +1,2 @@
 # NSFW Blur
-A plugin that blurs images in channels marked as NSFW.
+A plugin that blurs images and disables embed media in channels marked as NSFW.

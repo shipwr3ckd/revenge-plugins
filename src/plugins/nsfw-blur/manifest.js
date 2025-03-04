@@ -1,7 +1,7 @@
 /** @type {import("@vtypes/plugin").PluginManifest} */
 export default {
     name: "NSFW Blur",
-    description: `Blur image previews in NSFW channels.`,
+    description: `Blur image previews and disable embed media in NSFW channels.`,
     authors: [
         {
             name: "sylv256",
