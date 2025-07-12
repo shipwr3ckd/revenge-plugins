@@ -6,6 +6,10 @@ export default {
         {
             name: "sylv256",
             id: "209015289990348800"
+        },
+        {
+            name: "シグマ siguma",
+            id: "737597276339437578 "
         }
     ],
     main: "src/index.ts",

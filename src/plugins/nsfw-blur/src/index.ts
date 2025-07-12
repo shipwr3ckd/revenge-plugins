@@ -1,5 +1,5 @@
 import { logger } from '@vendetta'
-import { findByName } from '@vendetta/metro'
+import { findByName, findByProps } from '@vendetta/metro'
 import { ReactNative } from '@vendetta/metro/common'
 import { before } from '@vendetta/patcher'
 import { definePlugin } from '@vtypes/plugin'
@@ -39,5 +39,6 @@ export default definePlugin({
 		for (const unpatch of patches) {
 			unpatch()
 		}
-	}
+	},
+	settings: Settings
 });
